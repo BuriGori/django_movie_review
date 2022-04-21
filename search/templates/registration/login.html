@@ -1,0 +1,20 @@
+{% extends 'search/base.html' %}
+
+{% block content %}
+    {% if form.errors %} <p>이름과 비밀번호가 일치하지 않습니다. 다시 시도해주세요.</p> {% endif %}
+    <div style="text-align: center">
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <table class="table table-bordered table-hover" style="text-align: center; margin: auto; max-width: 500px">
+                <tr>
+                    <td>{{ form.username.label_tag }}</td>
+                    <td>{{ form.username }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.password.label_tag }}</td>
+                    <td>{{ form.password }}</td>
+                </tr>
+            </table>
+            <input type="submit" value="login" class="btn btn-primary btn-lg"/> <input type="hidden" name="next" value="{{ next }}"/></form>
+    </div>
+{% endblock %}

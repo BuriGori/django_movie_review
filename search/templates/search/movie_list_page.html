@@ -1,0 +1,35 @@
+{% extends 'search/base.html' %}
+
+{% block  content %}
+    <div style="text-align: center;"><h2>{{ maintitle.title }}의 검색결과</h2></div>
+    <hr>
+    {% for cur in lists %}
+        <span class="col" style="display:block; max-width: 200px; text-align: center;">
+            <div class="card text-white bg-primary mb-3" style="width:auto; height: auto; font-size: 10pt">
+                <a href="/list/{{ maintitle.title }}/{{ cur.number }}">
+                    <div class="card-header">제목 : {{ cur.title }}</div>
+                    {% if cur.image == '' %}
+                        {% comment %} 없는 이미지 {% endcomment %}
+                        <img src="https://www.namdokorea.com/site/jeonnam/tour/images/noimage.gif"
+                             style="max-height: 300px; max-width: 150px"><br>
+                    {% else %}
+                        <img src="{{ cur.image }}" style="max-height: 300px; max-width: 200px"><br>
+                    {% endif %}
+                </a>
+                <div class="text">링크 : <a href="{{ cur.link }}">이동</a></div>
+                <br>
+                <div class="text">개봉 : {{ cur.pubDate }}</div>
+                <br>
+                {% if not cur.director == ' ' %}
+                    <div class="text">감독 : {{ cur.director }}</div><br>
+                {% endif %}
+                {% if not cur.actor == ' ' %}
+                    <div class="text">배우 : {{ cur.actor }}</div><br>
+                {% endif %}
+                <div class="text">평가 : {{ cur.userRating }}</div>
+{#                <br>#}
+{#                <div>{{ cur.number }}</div>#}
+            </div>
+            </span>
+    {% endfor %}
+{% endblock %}

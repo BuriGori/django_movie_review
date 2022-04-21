@@ -1,0 +1,16 @@
+{% extends 'search/base.html' %}
+
+{% block  content %}
+    <div style="text-align: center;">
+    <h1 >search movie</h1>
+    <div style="width: 500px; display: inline-block; text-align: center";>
+        <div>
+            <form method="POST" class="post-form">
+                {% csrf_token %}
+                <input type="text" name="title" id="title" required >
+                <button type="submit" class="save btn btn-primary">검색</button>
+            </form method="POST">
+        </div>
+    </div>
+    </div>
+{% endblock %}

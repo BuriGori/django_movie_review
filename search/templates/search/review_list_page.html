@@ -1,0 +1,25 @@
+{% extends 'search/base.html' %}
+
+{% block content %}
+    <div style="text-align: center;"><h2>{{ user }}의 리뷰 목록</h2></div>
+    {% for list in reviews %}
+        <span class="col" style="display:block; max-width: 200px; text-align: center;">
+            <div class="card text-white bg-primary mb-3" style="width:auto; height: auto; font-size: 10pt">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                        onclick="location.href='{{ list.pk }}/del'"></button>
+                <a href="{{ list.pk }}">
+                    <div class="card-header">제목 : {{ list.movie_info.title }}</div>
+                    {% if cur.image == '' %}
+                        {% comment %} 없는 이미지 {% endcomment %}
+                        <img src="https://www.namdokorea.com/site/jeonnam/tour/images/noimage.gif"
+                             style="max-height: 300px; max-width: 150px"><br>
+                    {% else %}
+                        <img src="{{ list.movie_info.image }}" style="max-height: 300px; max-width: 200px"><br>
+                    {% endif %}
+                </a>
+                <hr>
+                <div class="text">{{ list.review }}</div>
+            </div>
+            </span>
+    {% endfor %}
+{% endblock %}
